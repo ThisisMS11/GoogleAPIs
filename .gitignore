@@ -32,6 +32,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+sample.html
 next-env.d.ts
 
 /server/node_modules

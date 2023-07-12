@@ -15,11 +15,10 @@ export function GoogleAuthProvider({ children }) {
         const expirationDate = newExpirationDate();
         // console.log("App.js 30 | expiration Date", expirationDate);
         if (accessToken && refreshToken) {
-            // storeTokenData(accessToken, refreshToken, expirationDate);
-            // setIsLoggedIn(true);
+            storeTokenData(accessToken, refreshToken, expirationDate);
+            setIsLoggedIn(true);
             return true;
         }
-
         return false;
     };
 

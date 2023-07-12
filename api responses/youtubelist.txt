@@ -1,0 +1,49 @@
+{
+  config: {
+    url: 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&regionCode=IN&chart=mostPopular',
+    method: 'GET',
+    userAgentDirectives: [ [Object] ],
+    paramsSerializer: [Function (anonymous)],
+    headers: {
+      'x-goog-api-client': 'gdcl/6.0.4 gl-node/16.19.1',
+      'Accept-Encoding': 'gzip',
+      'User-Agent': 'google-api-nodejs-client/6.0.4 (gzip)',
+      Authorization: 'Bearer ya29.a0AbVbY6M9Tj8s86W3f0KmfL5edTrM964bQ4rOkTEHL-fsTTYK4ISppjy7SklhnY45xPdJPeUIqAXur2KTfkJJffPLwrNbkvzgbB9sYNO34QpdicQOGNROvwFJiUoQDJA9vYUpkzfnmKFWkMks98o7UxEv1621aCgYKAWgSARISFQFWKvPlw1QFTL44BMntzIR7hi3a-A0163',
+      Accept: 'application/json'
+    },
+    params: {
+      part: 'snippet,contentDetails,statistics',
+      regionCode: 'IN',
+      chart: 'mostPopular'
+    },
+    validateStatus: [Function (anonymous)],
+    retry: true,
+    responseType: 'json'
+  },
+  data: {
+    kind: 'youtube#videoListResponse',
+    etag: 'Xe3y6Ld7NPeyj4utLfkYqpJqMeE',
+    items: [ [Object], [Object], [Object], [Object], [Object] ],
+    nextPageToken: 'CAUQAA',
+    pageInfo: { totalResults: 200, resultsPerPage: 5 }
+  },
+  headers: {
+    'alt-svc': 'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000',
+    'cache-control': 'private',
+    connection: 'close',
+    'content-encoding': 'gzip',
+    'content-type': 'application/json; charset=UTF-8',
+    date: 'Wed, 12 Jul 2023 11:36:07 GMT',
+    server: 'scaffolding on HTTPServer2',
+    'transfer-encoding': 'chunked',
+    vary: 'Origin, X-Origin, Referer',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-xss-protection': '0'
+  },
+  status: 200,
+  statusText: 'OK',
+  request: {
+    responseURL: 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&regionCode=IN&chart=mostPopular'
+  }
+}

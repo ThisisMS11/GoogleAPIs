@@ -52,6 +52,10 @@ app.get("/api/handleGoogleRedirect", async (req, res) => {
             res.json({ error: "tokens not found" }).status(404);
         }
 
+        console.log({ tokens });
+
+        console.log(typeof (tokens));
+
         oauth2Client.setCredentials(tokens);
 
         isAuthenticated = true;
@@ -118,6 +122,8 @@ app.post('/api/upload/video', (req, res) => {
             auth: oauth2Client
         })
 
+        // youtube.search.list()
+
         /* youtube upload endpoint is called in this function only */
         youtube.videos.insert({
             part: 'snippet,status',
@@ -143,6 +149,85 @@ app.post('/api/upload/video', (req, res) => {
             res.json({ message: "things went successfully correct Mohit ! " });
         })
     })
+})
+
+app.get('/api/popular', async (req, res) => {
+
+    let { accessToken, refreshToken, expiryDate } = req.body;
+
+    console.log({ accessToken });
+
+    const tokens = {
+        access_token: accessToken,
+        // refresh_token:refreshToken
+        // expiry_date:expiryDate
+    }
+
+    console.log(tokens);
+
+    console.log('creadentials are set');
+
+    oauth2Client.setCredentials(tokens);
+
+    const youtube = google.youtube({
+        version: 'v3',
+        auth: oauth2Client
+    })
+
+    youtube.videos.list({
+        /* this is to decide which properties we want */
+        part: 'snippet,contentDetails,statistics',
+        regionCode: 'IN',
+        chart: 'mostPopular',
+        maxResults: 50
+    }, (err, data) => {
+        if (err) throw err;
+
+        console.log(data.data.items);
+
+        res.json({ data: data.data.items });
+    })
+
+})
+
+app.get('/api/search', async (req, res) => {
+
+    let { accessToken, refreshToken, expiryDate } = req.body;
+
+    console.log({ accessToken });
+
+    const tokens = {
+        access_token: accessToken,
+        // refresh_token:refreshToken
+        // expiry_date:expiryDate
+    }
+
+    console.log(tokens);
+
+    console.log('creadentials are set');
+
+    oauth2Client.setCredentials(tokens);
+
+    const youtube = google.youtube({
+        version: 'v3',
+        auth: oauth2Client
+    })
+
+    youtube.search.list({
+        /* this is to decide which properties we want */
+        part: 'snippet',
+        q: req.body.query,
+        maxResults: 4,
+        regionCode:'IN',
+        type:'video'
+    }, (err, data) => {
+        if (err) throw err;
+
+        console.log(data.data.items);
+
+        res.json({ data: data.data.items });
+    })
+
 })
 
 

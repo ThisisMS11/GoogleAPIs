@@ -13,7 +13,6 @@ export default function Home() {
   const googleauth = useGoogleAuth();
 
 
-
   /* for creating the google auth link */
   const createGoogleAuthLink = async () => {
     try {
@@ -32,21 +31,29 @@ export default function Home() {
 
   useEffect(() => {
 
+
+
     const accessToken = query.get("accessToken");
     const refreshToken = query.get("refreshToken");
 
     const response = googleauth.handleTokenFromQueryParams(accessToken, refreshToken);
     console.log(response);
 
+
+    // document.getElementById('mydiv').innerHTML=data;
+
+
     if (response) router.push('/');
 
   }, []);
 
-
   return (
     <div>
       <button onClick={createGoogleAuthLink} className='p-4 bg-black text-white rounded-md m-4'>Google</button>
-      
+
+      <div id='mydiv'>
+
+      </div>
     </div>
   )
 }
