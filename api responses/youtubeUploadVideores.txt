@@ -1,0 +1,92 @@
+{
+  config: {
+    url: 'https://youtube.googleapis.com/upload/youtube/v3/videos?part=snippet%2Cstatus&uploadType=multipart',
+    method: 'POST',
+    userAgentDirectives: [ [Object] ],
+    paramsSerializer: [Function (anonymous)],
+    data: PassThrough {
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      allowHalfOpen: true,
+      _flush: [Function: flush],
+      [Symbol(kCapture)]: false,
+      [Symbol(kCallback)]: null
+    },
+    headers: {
+      'x-goog-api-client': 'gdcl/6.0.4 gl-node/16.19.1',
+      'content-type': 'multipart/related; boundary=7b812498-d7d3-4528-b80e-1dd5b98761e2',
+      'Accept-Encoding': 'gzip',
+      'User-Agent': 'google-api-nodejs-client/6.0.4 (gzip)',
+      Authorization: 'Bearer ya29.a0AbVbY6Nh3yr4avfKFT--XjpWAQ_DtsnVHyibwJr7-ODu1uRBRl-6Z66f-ocsLfsWR4k_sCmP_IHTSCVazZqahbGuU4SPDTkrjFTqOsO13Mxk5HDt5dRc903ccPCWNIdYAGpXazwvkvG9r4X1f2Vqp4vrtAL3aCgYKAcQSARISFQFWKvPl2VkxsZyH0t6AjR2dQBTD-g0163',
+      Accept: 'application/json'
+    },
+    params: { part: 'snippet,status', uploadType: 'multipart' },
+    validateStatus: [Function (anonymous)],
+    retry: true,
+    body: PassThrough {
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      allowHalfOpen: true,
+      _flush: [Function: flush],
+      [Symbol(kCapture)]: false,
+      [Symbol(kCallback)]: null
+    },
+    responseType: 'json'
+  },
+  data: {
+    kind: 'youtube#video',
+    etag: 'r_XEanJvCUVykINnaucObUHJJEg',
+    id: 'xfVMky_BqQc',
+    snippet: {
+      publishedAt: '2023-07-12T05:22:23Z',
+      channelId: 'UCpkVstDSqpHgLuWQQXQDtvg',
+      title: 'this is my title',
+      description: 'this is my description',
+      thumbnails: [Object],
+      channelTitle: 'MotaBhai Motivation',
+      tags: [Array],
+      categoryId: '22',
+      liveBroadcastContent: 'none',
+      localized: [Object]
+    },
+    status: {
+      uploadStatus: 'uploaded',
+      privacyStatus: 'private',
+      license: 'youtube',
+      embeddable: true,
+      publicStatsViewable: true
+    }
+  },
+  headers: {
+    'alt-svc': 'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000',
+    'cache-control': 'private',
+    connection: 'close',
+    'content-encoding': 'gzip',
+    'content-type': 'application/json; charset=UTF-8',
+    date: 'Wed, 12 Jul 2023 05:22:28 GMT',
+    server: 'UploadServer',
+    'transfer-encoding': 'chunked',
+    vary: 'Origin, X-Origin, Referer',
+    warning: '214 UploadServer gzipped',
+    'x-guploader-response-body-transformations': 'gzipped',
+    'x-guploader-uploadid': 'ADPycdulG5JvWDZ60x1dAJ_mOLsp69HzwWKSObreyoF6SbTE_0ta7D_WhDE6xdeqjBe-umn_g37lxabdf5LPwrkAnQx4Q6naxC9u'
+  },
+  status: 200,
+  statusText: 'OK',
+  request: {
+    responseURL: 'https://youtube.googleapis.com/upload/youtube/v3/videos?part=snippet%2Cstatus&uploadType=multipart'
+  }
+}
+
+
+
+const videoId = data.id;
+const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
+
+console.log(youtubeUrl);

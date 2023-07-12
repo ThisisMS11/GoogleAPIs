@@ -1,5 +1,5 @@
 'use client';
-import { useContext, createContext,useState } from "react";
+import { useContext, createContext, useState } from "react";
 import axios from "axios";
 
 const GoogleAuthContext = createContext();
@@ -15,10 +15,12 @@ export function GoogleAuthProvider({ children }) {
         const expirationDate = newExpirationDate();
         // console.log("App.js 30 | expiration Date", expirationDate);
         if (accessToken && refreshToken) {
-            storeTokenData(accessToken, refreshToken, expirationDate);
-            setIsLoggedIn(true);
+            // storeTokenData(accessToken, refreshToken, expirationDate);
+            // setIsLoggedIn(true);
+            return true;
         }
 
+        return false;
     };
 
     /* setting the  expiration date of session data */

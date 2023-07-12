@@ -1,6 +1,5 @@
 'use client';
-
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation'
 import { useGoogleAuth } from '@/context/GoogleAuth';
@@ -12,6 +11,8 @@ export default function Home() {
   const query = useSearchParams();
   const router = useRouter();
   const googleauth = useGoogleAuth();
+
+
 
   /* for creating the google auth link */
   const createGoogleAuthLink = async () => {
@@ -35,8 +36,9 @@ export default function Home() {
     const refreshToken = query.get("refreshToken");
 
     const response = googleauth.handleTokenFromQueryParams(accessToken, refreshToken);
+    console.log(response);
 
-    if(response) router.push('/');
+    if (response) router.push('/');
 
   }, []);
 
@@ -44,6 +46,7 @@ export default function Home() {
   return (
     <div>
       <button onClick={createGoogleAuthLink} className='p-4 bg-black text-white rounded-md m-4'>Google</button>
+      
     </div>
   )
 }
