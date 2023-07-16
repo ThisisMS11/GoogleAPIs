@@ -1,6 +1,7 @@
 'use client';
 import { useContext, createContext, useState } from "react";
 import axios from "axios";
+import { setCookie } from "cookies-next";
 
 const GoogleAuthContext = createContext();
 
@@ -34,6 +35,10 @@ export function GoogleAuthProvider({ children }) {
         sessionStorage.setItem("accessToken", token);
         sessionStorage.setItem("refreshToken", refreshToken);
         sessionStorage.setItem("expirationDate", expirationDate);
+
+        setCookie('accessToken', token);
+        setCookie('refreshToken', refreshToken);
+        setCookie('expirationDate', expirationDate);
     };
 
     /* for handling the token expiration */

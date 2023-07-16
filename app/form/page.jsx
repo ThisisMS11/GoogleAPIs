@@ -16,16 +16,16 @@ const YoutubeVideoForm = () => {
 
                     <form classNameName="mt-4">
                         <div className="mb-4">
-                            <label for="hs-hero-name-2" className="block text-sm font-medium dark:text-white"><span className="sr-only">Title</span></label>
+                            <label htmlFor="hs-hero-name-2" className="block text-sm font-medium dark:text-white"><span className="sr-only">Title</span></label>
                             <input type="text" id="hs-hero-name-2" className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-red-500 focus:ring-red-500 sm:p-4 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 bg-[#ececec]" placeholder="Video Title" />
                         </div>
 
                         <div className="mb-4">
-                            <label for="hs-hero-email-2" className="block text-sm font-medium dark:text-white"><span className="sr-only">Description</span></label>
+                            <label htmlFor="hs-hero-email-2" className="block text-sm font-medium dark:text-white"><span className="sr-only">Description</span></label>
                             <input type="email" id="hs-hero-email-2" className="py-3 px-4 block w-full border-gray-200 bg-[#ececec] rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 sm:p-4 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Video Description" />
                         </div>
 
-                        <label for="file-input" className="sr-only">Choose file</label>
+                        <label htmlFor="file-input" className="sr-only">Choose file</label>
                         <input type="file" name="file-input" id="file-input" className="block w-full border border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400
     file:bg-transparent file:border-0
     file:bg-gray-100 file:mr-4
