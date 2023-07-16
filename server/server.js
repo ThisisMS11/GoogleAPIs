@@ -218,8 +218,8 @@ app.get('/api/search', async (req, res) => {
         part: 'snippet',
         q: req.body.query,
         maxResults: 4,
-        regionCode:'IN',
-        type:'video'
+        regionCode: 'IN',
+        type: 'video'
     }, (err, data) => {
         if (err) throw err;
 

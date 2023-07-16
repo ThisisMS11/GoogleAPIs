@@ -12,26 +12,11 @@ export default function Home() {
   const router = useRouter();
   const googleauth = useGoogleAuth();
 
+  const [popularVideos, setPopularVideos] = useState([]);
 
-  /* for creating the google auth link */
-  const createGoogleAuthLink = async () => {
-    try {
-
-      const url = `${process.env.NEXT_PUBLIC_EXTERNAL_SERVER}/api/createAuthLink`
-      const request = await axios.get(url);
-
-      window.location.href = request.data.url;
-
-    } catch (error) {
-      console.log("App.js 12 | error", error);
-      throw new Error("Issue with Login", error.message);
-    }
-  };
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-
-
 
     const accessToken = query.get("accessToken");
     const refreshToken = query.get("refreshToken");
@@ -39,21 +24,47 @@ export default function Home() {
     const response = googleauth.handleTokenFromQueryParams(accessToken, refreshToken);
     console.log(response);
 
+    /* if set successfully then will redirect to home page */
+    if (response) {
+      setIsAuthenticated(true);
+      router.push('/');
+    }
 
-    // document.getElementById('mydiv').innerHTML=data;
-
-
-    if (response) router.push('/');
+    if (!sessionStorage.getItem('accessToken')) {
+      router.push('/login')
+    }
 
   }, []);
 
+
+  useEffect(() => {
+    const accessToken = sessionStorage.getItem('accessToken');
+    const refreshToken = sessionStorage.getItem('refreshToken');
+
+    async function call(tokens) {
+      try {
+        const response = await axios.post(`/api/google/videos/popular`, tokens, {});
+        setPopularVideos(response.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    if (accessToken || refreshToken) {
+      /* make the axios call to get the most popular videos from youtube */
+      const tokens = { accessToken, refreshToken };
+      call(tokens);
+    }
+  }, [])
+
+
   return (
-    <div>
-      <button onClick={createGoogleAuthLink} className='p-4 bg-black text-white rounded-md m-4'>Google</button>
-
-      <div id='mydiv'>
-
-      </div>
+    <div className=' h-[100vh] flex flex-wrap gap-4 relative top-[5rem] justify-around'>
+      {popularVideos && popularVideos.map((video, index) => {
+        return <div >
+          <iframe className='w-[35rem] h-2/3 rounded-lg' src={`https://www.youtube.com/embed/${video.id}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      })}
     </div>
   )
 }
