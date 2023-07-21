@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextField, Checkbox, FormControlLabel, FormGroup,Select,MenuItem } from '../imports/MuiImports';
+import { Checkbox, FormControlLabel, FormGroup, Select, MenuItem, } from '../imports/MuiImports';
 import { useState } from '../imports/ReactImports'
 
 const FilterBox = () => {
@@ -24,7 +24,7 @@ const FilterBox = () => {
 
 
   return (
-    <>
+    <div className='flex flex-col relative  h-[90vh]'>
 
 
       <div className="py-3">
@@ -61,7 +61,7 @@ const FilterBox = () => {
         />
       </FormGroup>
 
-
+      <div className='text-md my-2 font-semibold'>Choose Country</div>
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
@@ -69,13 +69,32 @@ const FilterBox = () => {
         label="Age"
         onChange={handleChange}
       >
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        <MenuItem value={10}>US</MenuItem>
+        <MenuItem value={20}>India</MenuItem>
+        <MenuItem value={30}>Mexico</MenuItem>
       </Select>
 
-      <button onClick={showfilters}> click me to see magic</button>
-    </>
+      {/* Video Categoriea  */}
+      <div className='text-md my-2 font-semibold'>Choose Video Category</div>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={age}
+        label="Age"
+        onChange={handleChange}
+        className='my-2'
+      >
+        <MenuItem value={30} defaultChecked>any</MenuItem>
+        <MenuItem value={10} >Entertainment</MenuItem>
+        <MenuItem value={20}>Science and Technology</MenuItem>
+      </Select>
+
+      <button onClick={showfilters}
+        className='absolute bottom-4 bg-red-500 p-4 text-md rounded-md text-white'>
+        Apply Changes
+      </button>
+
+    </div>
   )
 }
 
