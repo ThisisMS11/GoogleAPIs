@@ -1,5 +1,5 @@
 import React from 'react'
-import { Checkbox, FormControlLabel, FormGroup, Select, MenuItem, } from '../imports/MuiImports';
+import { Checkbox, FormControlLabel, FormGroup, Select, MenuItem, Slider } from '../imports/MuiImports';
 import { useState } from '../imports/ReactImports'
 
 const FilterBox = () => {
@@ -88,6 +88,16 @@ const FilterBox = () => {
         <MenuItem value={10} >Entertainment</MenuItem>
         <MenuItem value={20}>Science and Technology</MenuItem>
       </Select>
+
+      {/* Video Duration  */}
+      <div className='text-md my-2 font-semibold'>
+        Choose Video Duration in mins</div>
+      <Slider defaultValue={50} max={120} aria-label="Default" valueLabelDisplay="auto" />
+
+      {/* video views */}
+      <div className='text-md my-2 font-semibold'>
+        Choose Video Views</div>
+      <Slider defaultValue={50} max={120} aria-label="Default" valueLabelDisplay="auto" />
 
       <button onClick={showfilters}
         className='absolute bottom-4 bg-red-500 p-4 text-md rounded-md text-white'>

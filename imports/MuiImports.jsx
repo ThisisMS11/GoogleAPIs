@@ -1,5 +1,5 @@
 export {
-    TextField,Checkbox,FormGroup,FormControlLabel,ThemeProvider,createTheme,Select,MenuItem
+    TextField,Checkbox,FormGroup,FormControlLabel,ThemeProvider,createTheme,Select,MenuItem,Slider
 } from '@mui/material'
 
 // export { default as IconButton } from '@mui/material/IconButton';

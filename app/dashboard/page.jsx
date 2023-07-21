@@ -1,6 +1,6 @@
 import axios from "axios"
 import { cookies } from 'next/headers'
-import Card from '@/components/Videos/Card'
+import Card from '../../components/Videos/Card'
 import popularVideos from "./demodata"
 
 // async function getData() {

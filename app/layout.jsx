@@ -1,8 +1,8 @@
-import GoogleProvider from '@/components/GoogleProvider'
+import GoogleProvider from '../components/GoogleProvider'
 import './globals.css'
 import { Ubuntu } from 'next/font/google'
-import Navbar from '@/components/Navbar'
-import MuiThemeProvider from '@/components/MuiThemeProvider'
+import Navbar from '../components/Navbar'
+import MuiThemeProvider from '../components/MuiThemeProvider'
 
 export const ubuntu = Ubuntu({
   subsets: ['latin'],

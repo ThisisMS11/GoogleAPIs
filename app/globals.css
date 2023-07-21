@@ -18,10 +18,18 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+
+/* Hide the default scrollbar on WebKit-based browsers */
+.videoScrollBar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Track (background) of the scrollbar */
+.videoScrollBar::-webkit-scrollbar-track {
+  background: none;
 }

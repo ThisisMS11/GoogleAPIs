@@ -33,6 +33,10 @@ export default function Home() {
       router.push('/login')
     }
 
+    if (sessionStorage.getItem('accessToken')) {
+      router.push('/dashboard')
+    }
+
   }, []);
 
 
@@ -63,7 +67,7 @@ export default function Home() {
 
   return (
     <div className=' h-[100vh] flex flex-wrap gap-4 relative top-[5rem] justify-around'>
-      hello
+      Home Page
     </div>
   )
 }
