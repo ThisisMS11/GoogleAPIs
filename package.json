@@ -11,7 +11,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.0",
+    "@mui/icons-material": "^5.14.1",
+    "@mui/material": "^5.14.1",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
     "cookies-next": "^2.1.2",

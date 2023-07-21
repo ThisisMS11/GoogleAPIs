@@ -29,7 +29,7 @@ export const POST = async (req) => {
             part: 'snippet,contentDetails,statistics',
             regionCode: 'IN',
             chart: 'mostPopular',
-            maxResults: 1
+            maxResults: 10
         })
 
         return NextResponse.json({data:data.items})

@@ -22,10 +22,12 @@ const Login = () => {
 
         <div className="mx-auto max-w-screen-md py-12 px-4 sm:px-6 md:max-w-screen-xl md:py-20 lg:py-32 md:px-8 border-black h-full items-center flex  ">
           <div className="md:pr-8 md:w-1/2 xl:pr-0 xl:w-5/12">
-            <h1 className="text-3xl text-gray-800 font-bold md:text-4xl md:leading-tight lg:text-5xl lg:leading-tight dark:text-gray-200">
+
+            <h1 className="text-4xl text-gray-800 font-bold md:text-4xl md:leading-tight lg:text-5xl lg:leading-tight dark:text-gray-200 text-center md:text-left ">
               Solving problems for every <span className="text-red-600 dark:text-red-500">Youtuber</span>
             </h1>
-            <p className="mt-3 text-base text-gray-500">
+
+            <p className="mt-3 text-base text-gray-500 text-center md:text-left">
               Give Us the Permission to Help you manage your Youtube Channel
             </p>
 
