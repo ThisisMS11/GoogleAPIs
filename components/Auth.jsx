@@ -1,28 +1,22 @@
-"use client";
-
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { getCookie } from 'cookies-next';
 import { redirect } from 'next/navigation'
+import { cookies } from 'next/headers';
 
 
 export default function Auth(Component) {
     return function ProtectedRoute({ ...props }) {
 
-        const router = useRouter();
-
-
+        const cookieStore = cookies();
+        
+        
         /* if the user is logged in then we want the user to be redirected to the dashboard otherwise the login page */
-        const userIsAuthenticated = getCookie('isLoggedIn');
+        const userIsAuthenticated = cookieStore.get('isLoggedIn')?.value;
+        
         console.log(userIsAuthenticated);
 
 
-        useEffect(() => {
-            if (!userIsAuthenticated) {
-                redirect('/login');
-            }
-        }, [userIsAuthenticated, router]);
-
+        if (!userIsAuthenticated) {
+            redirect('/login');
+        }
 
         return <Component {...props} />;
     };
