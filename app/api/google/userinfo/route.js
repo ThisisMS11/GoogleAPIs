@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
 import { oauth2Client } from "../createAuthLink/route";
-import {google} from 'googleapis'
+import { google } from 'googleapis'
 
-export const POST = async (req) => {
+export const GET = async (req) => {
 
-    const { accessToken, refreshToken } = await req.json();
 
-    if (!accessToken ) {
+    let accessToken = req.cookies.get("accessToken").value;
+    let refreshToken = req.cookies.get("refreshToken").value;
+
+    if (!accessToken || !refreshToken) {
         return NextResponse.json({ error: "Token not provided" }, { status: 401 });
     }
 
@@ -27,6 +29,6 @@ export const POST = async (req) => {
         return NextResponse.json(data, { status: 200 });
     } catch (error) {
         console.log(error.message);
-        return NextResponse.json({error : error.message}, { status: 400 });
+        return NextResponse.json({ error: error.message }, { status: 400 });
     }
 }

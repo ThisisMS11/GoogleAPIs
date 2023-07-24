@@ -1,36 +1,37 @@
+'use client';
+
 import axios from "axios"
-import { cookies } from 'next/headers'
 import Card from '../../components/Videos/Card'
-import popularVideos from "./demodata"
-
-// async function getData() {
-//     const cookieStore = cookies()
-
-//     const accessToken = cookieStore.get('accessToken').value;
-//     const refreshToken = cookieStore.get('refreshToken').value;
+// import popularVideos from "./demodata"
+import CheckAuth from '../../components/Auth'
+import { useState, useEffect } from "react";
 
 
-//     if (accessToken || refreshToken) {
-//         /* make the axios call to get the most popular videos from youtube */
-//         const tokens = { accessToken, refreshToken };
-
-//         try {
-//             const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/google/videos/popular`, tokens, {});
-//             return response.data.data;
-//         } catch (error) {
-//             console.log(error);
-//             throw error;
-//         }
-//     }
-// }
 
 const dashboard = async () => {
-    // const popularVideos = await getData();
-    // console.log(popularVideos);
+
+
+    const [videos, setVideos] = useState([]);
+
+    useEffect(() => {
+        async function getData() {
+            try {
+                const response = await axios.get(`/api/google/videos/popular`);
+                setVideos(response.data.data)
+            } catch (error) {
+                console.log(error);
+                throw error;
+            }
+        }
+
+        getData();
+
+    }, [])
+
 
     return <div className=' h-[100vh] flex flex-wrap gap-4 relative  justify-around '>
 
-        {popularVideos && popularVideos.map((video) => {
+        {videos && videos.map((video) => {
             return <div key={video.id}
                 className=" h-fit p-2 "
             >
@@ -42,4 +43,4 @@ const dashboard = async () => {
     </div>
 }
 
-export default dashboard;
+export default CheckAuth(dashboard);

@@ -1,5 +1,13 @@
 import { oauth2Client } from "../createAuthLink/route";
 import { NextResponse } from "next/server";
+import { cookies } from 'next/headers'
+
+
+const newExpirationDate = () => {
+    var expiration = new Date();
+    expiration.setHours(expiration.getHours() + 1);
+    return expiration;
+};
 
 export const GET = async (req) => {
     const codeEncoded = req.url.split('code=')[1];
@@ -22,7 +30,14 @@ export const GET = async (req) => {
         const accessToken = tokens.access_token;
         const refreshToken = tokens.refresh_token;
 
-        const url = `${process.env.NEXT_PUBLIC_SERVER}?accessToken=${accessToken}&refreshToken=${refreshToken}`;
+
+        /* setting the request cookies here */
+        cookies().set('accessToken', accessToken, { secure: true })
+        cookies().set('refreshToken', refreshToken, { secure: true });
+        cookies().set('expirationTime', newExpirationDate, { secure: true });
+        cookies().set('isLoggedIn', true, { secure: true });
+
+        const url = `${process.env.NEXT_PUBLIC_SERVER}`;
         console.log(url);
 
         return NextResponse.redirect(url);

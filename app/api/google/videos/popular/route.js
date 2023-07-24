@@ -2,10 +2,12 @@ import { oauth2Client } from "../../../google/createAuthLink/route"
 import { NextResponse } from "next/server"
 import {google} from 'googleapis'
 
-export const POST = async (req) => {
+export const GET = async (req) => {
     /* get the access token in the request body */
 
-    let { accessToken, refreshToken } = await req.json();
+    let accessToken = req.cookies.get("accessToken").value;
+    let refreshToken = req.cookies.get("refreshToken").value;
+
 
     const tokens = {
         access_token: accessToken,

@@ -36,9 +36,9 @@ export function GoogleAuthProvider({ children }) {
         sessionStorage.setItem("refreshToken", refreshToken);
         sessionStorage.setItem("expirationDate", expirationDate);
 
-        setCookie('accessToken', token);
-        setCookie('refreshToken', refreshToken);
-        setCookie('expirationDate', expirationDate);
+        // setCookie('accessToken', token);
+        // setCookie('refreshToken', refreshToken);
+        // setCookie('expirationDate', expirationDate);
     };
 
     /* for handling the token expiration */

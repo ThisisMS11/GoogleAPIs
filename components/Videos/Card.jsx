@@ -18,6 +18,9 @@ import { useRouter } from 'next/navigation';
 
 
 export default function RecipeReviewCard({ video }) {
+
+    console.log(video);
+
     const [expanded, setExpanded] = React.useState(true);
     const router = useRouter();
 
@@ -41,7 +44,7 @@ export default function RecipeReviewCard({ video }) {
         return formattedNumber + symbols[exp];
     }
 
-    const showvideo =(id)=>{
+    const showvideo = (id) => {
         router.push(`/videos/${id}`)
     }
 
@@ -52,7 +55,7 @@ export default function RecipeReviewCard({ video }) {
             <CardHeader
                 action={
                     <IconButton aria-label="settings">
-                        <MoreVertIcon onClick={handleClick}/>
+                        <MoreVertIcon onClick={handleClick} />
                     </IconButton>
                 }
                 title={video.snippet.channelTitle}
@@ -85,7 +88,7 @@ export default function RecipeReviewCard({ video }) {
             <CardMedia
                 component="img"
                 height="194"
-                image={video.snippet.thumbnails.standard.url}
+                image={video.snippet.thumbnails.high.url}
                 alt="Paella dish"
             />
 
@@ -121,7 +124,7 @@ export default function RecipeReviewCard({ video }) {
                     </Typography>
                 </IconButton>
 
-                <IconButton aria-label="share" onClick={()=> showvideo(video.id)} >
+                <IconButton aria-label="share" onClick={() => showvideo(video.id)} >
                     <PlayCircleOutlineIcon
                         className='text-red-500 w-8 h-8'
 
