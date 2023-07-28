@@ -14,10 +14,11 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { Box } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
 
-export default function RecipeReviewCard({ video ,ForSearch}) {
+export default function RecipeReviewCard({ video, ForSearch }) {
 
     console.log(video);
 
@@ -101,42 +102,47 @@ export default function RecipeReviewCard({ video ,ForSearch}) {
 
             {/* statistics  */}
             {/* video statistics may not exist in search query page  */}
-            {video.statistics &&
-                <CardActions className='absolute bottom-0 w-full'>
 
-                    <IconButton aria-label="share">
-                        <VisibilityIcon className='text-gray-500' />
-                        <Typography>
-                            {formatNumber(video.statistics.viewCount)}
-                        </Typography>
-                    </IconButton>
+            <Box className='flex  absolute w-full bottom-0 justify-between'>
 
+                {video.statistics &&
+                    <CardActions >
 
-                    <IconButton aria-label="add to favorites">
-                        <FavoriteIcon />
-                        <Typography>
-                            {formatNumber(video.statistics.likeCount)}
-                        </Typography>
-                    </IconButton>
-
-                    <IconButton aria-label="share">
-                        <ChatIcon />
-                        <Typography>
-                            {formatNumber(video.statistics.commentCount)}
-                        </Typography>
-                    </IconButton>
+                        <IconButton aria-label="share">
+                            <VisibilityIcon className='text-gray-500' />
+                            <Typography>
+                                {formatNumber(video.statistics.viewCount)}
+                            </Typography>
+                        </IconButton>
 
 
-                </CardActions>
+                        <IconButton aria-label="add to favorites">
+                            <FavoriteIcon />
+                            <Typography>
+                                {formatNumber(video.statistics.likeCount)}
+                            </Typography>
+                        </IconButton>
 
-            }
+                        <IconButton aria-label="share">
+                            <ChatIcon />
+                            <Typography>
+                                {formatNumber(video.statistics.commentCount)}
+                            </Typography>
+                        </IconButton>
 
-            <IconButton aria-label="share" onClick={() => showvideo(ForSearch ? video.id.videoId : video.id)} >
-                <PlayCircleOutlineIcon
-                    className='text-red-500 w-8 h-8'
 
-                />
-            </IconButton>
+                    </CardActions>
+
+                }
+
+                <IconButton aria-label="share" onClick={() => showvideo(ForSearch ? video.id.videoId : video.id)} >
+                    <PlayCircleOutlineIcon
+                        className='text-red-500 w-8 h-8'
+
+                    />
+                </IconButton>
+            </Box>
+
         </Card>
     );
 }

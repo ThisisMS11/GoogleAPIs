@@ -4,7 +4,6 @@ import { google } from 'googleapis'
 
 export const GET = async (req) => {
 
-
     let accessToken = req.cookies.get("accessToken").value;
     let refreshToken = req.cookies.get("refreshToken").value;
 

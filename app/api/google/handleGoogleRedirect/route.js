@@ -4,6 +4,7 @@ import { cookies } from 'next/headers'
 import { connectToDB } from "../../../../utils/database";
 import User from '../../../../models/User'
 import { google } from 'googleapis'
+import jwt from 'jsonwebtoken'
 
 const newExpirationDate = () => {
     var expiration = new Date();
@@ -42,39 +43,35 @@ export const GET = async (req) => {
 
         /* Getting user information */
 
-        try {
-            const { data } = await oauth2.userinfo.get();
+        const { data } = await oauth2.userinfo.get();
 
-            await connectToDB();
-            
-            const user = await User.find({ googleId: data.id });
+        await connectToDB();
 
-            console.log(user);
-            /* if user do not exist only then create the new user otherwise let it be */
-            if (user.length === 0) {
-                /* create the user in the database */
-                const newUser = new User({
-                    googleId: data.id,
-                    name: data.name,
-                    email: data.email,
-                    picture: data.picture
-                })
+        let user = await User.find({ googleId: data.id });
 
-                // console.log({newUser});
-                await newUser.save();
-            }
-        } catch (error) {
-            console.log('User Creation Error Occured : ', error)
+        /* if user do not exist only then create the new user otherwise let it be */
+        if (user.length === 0) {
+            /* create the user in the database */
+            user = new User({
+                googleId: data.id,
+                name: data.name,
+                email: data.email,
+                picture: data.picture
+            });
+
+            // console.log({newUser});
+            await user.save();
         }
-        
+        const token = await jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+
+
         /* setting the request cookies here */
         cookies().set('accessToken', accessToken, { secure: true })
         cookies().set('refreshToken', refreshToken, { secure: true });
         cookies().set('expirationTime', newExpirationDate, { secure: true });
         cookies().set('isLoggedIn', true, { secure: true });
 
-        const url = `${process.env.NEXT_PUBLIC_SERVER}`;
-        console.log(url);
+        const url = `${process.env.NEXT_PUBLIC_SERVER}?token=${token}`;
 
         return NextResponse.redirect(url);
     } catch (err) {
