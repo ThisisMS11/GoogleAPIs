@@ -17,7 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from 'next/navigation';
 
 
-export default function RecipeReviewCard({ video }) {
+export default function RecipeReviewCard({ video ,ForSearch}) {
 
     console.log(video);
 
@@ -100,40 +100,43 @@ export default function RecipeReviewCard({ video }) {
             </CardContent>
 
             {/* statistics  */}
-            <CardActions className='absolute bottom-0 w-full'>
+            {/* video statistics may not exist in search query page  */}
+            {video.statistics &&
+                <CardActions className='absolute bottom-0 w-full'>
 
-                <IconButton aria-label="share">
-                    <VisibilityIcon className='text-gray-500' />
-                    <Typography>
-                        {formatNumber(video.statistics.viewCount)}
-                    </Typography>
-                </IconButton>
-
-
-                <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                    <Typography>
-                        {formatNumber(video.statistics.likeCount)}
-                    </Typography>
-                </IconButton>
-
-                <IconButton aria-label="share">
-                    <ChatIcon />
-                    <Typography>
-                        {formatNumber(video.statistics.commentCount)}
-                    </Typography>
-                </IconButton>
-
-                <IconButton aria-label="share" onClick={() => showvideo(video.id)} >
-                    <PlayCircleOutlineIcon
-                        className='text-red-500 w-8 h-8'
-
-                    />
-                </IconButton>
+                    <IconButton aria-label="share">
+                        <VisibilityIcon className='text-gray-500' />
+                        <Typography>
+                            {formatNumber(video.statistics.viewCount)}
+                        </Typography>
+                    </IconButton>
 
 
-            </CardActions>
+                    <IconButton aria-label="add to favorites">
+                        <FavoriteIcon />
+                        <Typography>
+                            {formatNumber(video.statistics.likeCount)}
+                        </Typography>
+                    </IconButton>
 
+                    <IconButton aria-label="share">
+                        <ChatIcon />
+                        <Typography>
+                            {formatNumber(video.statistics.commentCount)}
+                        </Typography>
+                    </IconButton>
+
+
+                </CardActions>
+
+            }
+
+            <IconButton aria-label="share" onClick={() => showvideo(ForSearch ? video.id.videoId : video.id)} >
+                <PlayCircleOutlineIcon
+                    className='text-red-500 w-8 h-8'
+
+                />
+            </IconButton>
         </Card>
     );
 }

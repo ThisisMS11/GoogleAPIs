@@ -4,13 +4,13 @@ import { useState } from '../imports/ReactImports'
 
 const FilterBox = () => {
 
-  const [query, setQuery] = useState("");
 
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+
 
 
   const [popularChecked, setPopularChecked] = useState(false);
@@ -27,7 +27,7 @@ const FilterBox = () => {
     <div className='flex flex-col relative  h-[90vh]'>
 
 
-      <div className="py-3">
+      {/* <div className="py-3">
         <div className="relative max-w-xs">
           <label htmlFor="hs-table-search" className="sr-only">Search</label>
 
@@ -43,7 +43,7 @@ const FilterBox = () => {
           </div>
 
         </div>
-      </div>
+      </div> */}
 
 
       <FormGroup>

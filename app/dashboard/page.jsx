@@ -1,7 +1,8 @@
 import Card from '../../components/Videos/Card'
-// import popularVideos from "./demodata"
+import popularVideos from "./demodata"
 import CheckAuth from '../../components/Auth'
 import { cookies } from 'next/headers'
+// import Search from '../../components/Search'
 
 
 /* get popular videos */
@@ -16,27 +17,33 @@ async function getData() {
     if (!res.ok) {
         throw new Error('Failed to fetch data')
     }
-    
+
     const data = await res.json();
     return data.data;
 }
 
 const dashboard = async () => {
 
-    const videos = await getData();
+    // const videos = await getData();
+    const videos = popularVideos;
 
-    return <div className=' h-[100vh] flex flex-wrap gap-4 relative  justify-around '>
 
-        {videos && videos.map((video) => {
-            return <div key={video.id}
-                className=" h-fit p-2 "
-            >
+    return <section >
 
-                <Card video={video} />
+        {/* <Search /> */}
 
-            </div>
-        })}
-    </div>
+        <div className='flex flex-wrap gap-4 relative justify-center'>
+            {videos && videos.map((video) => {
+                return <div key={video.id}
+                    className=" h-fit p-2 "
+                >
+
+                    <Card video={video} ForSearch={false} />
+
+                </div>
+            })}
+        </div>
+    </section>
 }
 
 export default CheckAuth(dashboard);

@@ -34,7 +34,7 @@ export const POST = async (req) => {
             q: query,
             regionCode: regionCode,
             type: 'video',
-            maxResults: 10
+            maxResults: 3
         })
 
         return NextResponse.json({ data: data.items })
