@@ -20,7 +20,6 @@ import { useRouter } from 'next/navigation';
 
 export default function RecipeReviewCard({ video, ForSearch }) {
 
-    console.log(video);
 
     const [expanded, setExpanded] = React.useState(true);
     const router = useRouter();
@@ -59,9 +58,19 @@ export default function RecipeReviewCard({ video, ForSearch }) {
                         <MoreVertIcon onClick={handleClick} />
                     </IconButton>
                 }
-                title={video.snippet.channelTitle}
+                title={
+                    <div className='flex'>{video.snippet.channelTitle}
+                        <button className='text-sm  bg-red-700 text-white border-red-400 rounded-md p-1 w-fit ml-2 h-fit'>
+                            subscribe
+                        </button>
+
+                        <button className='text-sm  bg-gray-500 text-white border-red-400 rounded-md p-1 w-fit ml-2 h-fit'>
+                            subscribed
+                        </button>
+                    </div>}
                 subheader="September 14, 2016"
             />
+
 
             <Menu
                 id="long-menu"

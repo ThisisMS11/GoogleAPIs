@@ -4,7 +4,8 @@ import { cookies } from 'next/headers'
 import { connectToDB } from "../../../../utils/database";
 import User from '../../../../models/User'
 import { google } from 'googleapis'
-import jwt from 'jsonwebtoken'
+import * as jose from 'jose'
+
 
 const newExpirationDate = () => {
     var expiration = new Date();
@@ -16,7 +17,6 @@ export const GET = async (req) => {
     const codeEncoded = req.url.split('code=')[1];
     const code = decodeURIComponent(codeEncoded);
 
-    // console.log({ code });
 
     try {
         const tokens = await new Promise((resolve, reject) => {
@@ -41,16 +41,21 @@ export const GET = async (req) => {
         });
 
 
+
         /* Getting user information */
 
         const { data } = await oauth2.userinfo.get();
 
+        // console.log({ data });
+
         await connectToDB();
 
-        let user = await User.find({ googleId: data.id });
+        let user = await User.findOne({ googleId: data.id });
+
+        console.log('user before new one ', { user });
 
         /* if user do not exist only then create the new user otherwise let it be */
-        if (user.length === 0) {
+        if (!user) {
             /* create the user in the database */
             user = new User({
                 googleId: data.id,
@@ -62,7 +67,26 @@ export const GET = async (req) => {
             // console.log({newUser});
             await user.save();
         }
-        const token = await jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+
+        console.log('user after new one ', { user });
+
+        /* generate the token here */
+
+        const userId = user._id; // Replace this with your actual user ID
+
+        console.log({ userId: user._id });
+
+        const secret = new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET);
+        const alg = 'HS256';
+
+        const jwt = await new jose.SignJWT({ 'http://localhost:3000': true })
+            .setProtectedHeader({ alg })
+            .setSubject(userId) // Set the "sub" claim to the user ID
+            .setIssuedAt()
+            .setIssuer('http://localhost:3000')
+            .setAudience('http://localhost:3000') // Set the "aud" claim to the user ID
+            .setExpirationTime('2h')
+            .sign(secret);
 
 
         /* setting the request cookies here */
@@ -71,7 +95,7 @@ export const GET = async (req) => {
         cookies().set('expirationTime', newExpirationDate, { secure: true });
         cookies().set('isLoggedIn', true, { secure: true });
 
-        const url = `${process.env.NEXT_PUBLIC_SERVER}?token=${token}`;
+        const url = `${process.env.NEXT_PUBLIC_SERVER}?token=${jwt}`;
 
         return NextResponse.redirect(url);
     } catch (err) {
