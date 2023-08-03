@@ -10,6 +10,7 @@ async function getData() {
 
     const url = `${process.env.NEXT_PUBLIC_SERVER}/api/google/videos/popular`;
 
+
     const res = await fetch(url, {
         headers: { Cookie: cookies().toString() },
     });
@@ -32,7 +33,7 @@ const dashboard = async () => {
 
         {/* <Search /> */}
 
-        <div className='flex flex-wrap gap-4 relative justify-center'>
+        <div className='flex flex-wrap gap-4 relative justify-center' >
             {videos && videos.map((video) => {
                 return <div key={video.id}
                     className=" h-fit p-2 "

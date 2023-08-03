@@ -89,6 +89,8 @@ export const GET = async (req) => {
             .sign(secret);
 
 
+
+
         /* setting the request cookies here */
         cookies().set('accessToken', accessToken, { secure: true })
         cookies().set('refreshToken', refreshToken, { secure: true });

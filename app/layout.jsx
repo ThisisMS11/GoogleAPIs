@@ -3,6 +3,7 @@ import './globals.css'
 import { Ubuntu } from 'next/font/google'
 import Navbar from '../components/Navbar'
 import MuiThemeProvider from '../components/MuiThemeProvider'
+import Script from 'next/script'
 
 export const ubuntu = Ubuntu({
   subsets: ['latin'],
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className='bg-white'>
 
+      <Script src="https://kit.fontawesome.com/c1677446e6.js" crossorigin="anonymous" />
 
 
       <body className={ubuntu.className}>

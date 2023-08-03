@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers'
-import searchResults from './demodata';
+// import searchResults from './demodata';
 import Card from '../../../components/Videos/Card'
 // import Search from '../../../components/Search';
 
@@ -30,7 +30,7 @@ const SearchResults = async ({ searchParams }) => {
 
     const query = searchParams.search_query;
 
-    // const searchResults = await getData(query);
+    const searchResults = await getData(query);
 
     return <section >
 

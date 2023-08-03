@@ -28,7 +28,11 @@ const UserSchema = new Schema({
         {
             type: String
         }
-    ]
+    ],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 /* models contains all the models that have been registered with Mongoose. and we do not want to recreate them when every new api route is called. and if the User model already exists in the models then we don't want to recreate it but using the existing one. */

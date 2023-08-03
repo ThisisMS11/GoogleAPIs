@@ -20,7 +20,7 @@ export async function middleware(request) {
 
         /* get the authorisation header */
 
-        let JWTtoken = request.headers.get('authorization').split(" ")[1];
+        let JWTtoken = request.headers.get('Authorization').split(" ")[1];
 
         // /* if the authorization header is not present then return the error */
         if (!JWTtoken) {
@@ -32,27 +32,36 @@ export async function middleware(request) {
         )
 
 
-        const { payload } = await jose.jwtVerify(JWTtoken, secret, {
-            issuer: 'http://localhost:3000',
-            audience: 'http://localhost:3000',
-        })
+        try {
 
-        console.log({payload})
+            const { payload } = await jose.jwtVerify(JWTtoken, secret, {
+                issuer: 'http://localhost:3000',
+                audience: 'http://localhost:3000',
+            })
 
-        const userId = payload.sub;
+            /* payload contains the userId of the client */
+            console.log({ payload })
 
-        const requestHeaders = new Headers(request.headers)
+            const userId = payload.sub;
+
+            const requestHeaders = new Headers(request.headers)
 
 
-        /* setting new headers here */
-        requestHeaders.set('userId', userId)
+            /* setting new headers here */
+            requestHeaders.set('userId', userId)
 
 
-        return NextResponse.next({
-            request: {
-                // New request headers
-                headers: requestHeaders,
-            },
-        })
+            return NextResponse.next({
+                request: {
+                    // New request headers
+                    headers: requestHeaders,
+                },
+            })
+
+        } catch (error) {
+
+            console.log({ error }, 'abra ka dabra : ');
+            return NextResponse.json({ error})
+        }
     }
 }
