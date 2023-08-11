@@ -16,7 +16,8 @@ export async function middleware(request) {
     }
 
     /* authorisation logic */
-    if (request.nextUrl.pathname.startsWith('/api/videos')) {
+    if (request.nextUrl.pathname.startsWith('/api/videos')
+        || request.nextUrl.pathname.startsWith('/api/user')) {
 
         /* get the authorisation header */
 
@@ -40,7 +41,7 @@ export async function middleware(request) {
             })
 
             /* payload contains the userId of the client */
-            console.log({ payload })
+            console.log('inside middleware ', { payload })
 
             const userId = payload.sub;
 
@@ -61,7 +62,7 @@ export async function middleware(request) {
         } catch (error) {
 
             console.log({ error }, 'abra ka dabra : ');
-            return NextResponse.json({ error})
+            return NextResponse.json({ error })
         }
     }
 }

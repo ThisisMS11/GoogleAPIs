@@ -16,14 +16,6 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-}
-
-
 /* Hide the default scrollbar on WebKit-based browsers */
 .videoScrollBar::-webkit-scrollbar {
   display: none;
@@ -32,4 +24,16 @@ body {
 /* Track (background) of the scrollbar */
 .videoScrollBar::-webkit-scrollbar-track {
   background: none;
+}
+
+.playlistItemsparent {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.child {
+  height: 10rem;
+  border: solid 2px black;
+  width: 100%;
+  margin-top: 1rem;
 }

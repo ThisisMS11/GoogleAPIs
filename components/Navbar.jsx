@@ -53,8 +53,8 @@ const Navbar = () => {
                             < Link className="font-medium  text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="/" aria-current="page" > Home</ Link>
                             <Link className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="/form"
                             >Upload</Link>
-                            <Link className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="/mychannel" >
-                                Your Channel
+                            <Link className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="/myplaylist" >
+                                Your Playlists
                             </Link>
 
 

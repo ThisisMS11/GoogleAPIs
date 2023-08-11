@@ -1,21 +1,24 @@
-import { oauth2Client } from "../../../google/createAuthLink/route"
 import { NextResponse } from "next/server"
-import {google} from 'googleapis'
+import { google } from 'googleapis'
+import { oauth2Client } from "../../../google/createAuthLink/route";
 
-export const GET = async (req) => {
+export const GET = async (req, { params }) => {
     /* get the access token in the request body */
 
 
-    console.log(req.cookies.get('accessToken')); 
+    const playlistId = params.id;
+
+    console.log(req.cookies.get('accessToken'));
 
     let accessToken = req.cookies.get("accessToken").value;
 
     let refreshToken = req.cookies.get("refreshToken").value;
-    
+
+
     const tokens = {
         access_token: accessToken,
         refresh_token: refreshToken
-    }   
+    }
 
     /* set the credentials */
     oauth2Client.setCredentials(tokens);
@@ -29,15 +32,14 @@ export const GET = async (req) => {
     /* get the videos */
 
     try {
-        const { data } = await youtube.videos.list({
+        const { data } = await youtube.playlistItems.list({
             /* this is to decide which properties we want */
-            part: 'snippet,contentDetails,statistics',
-            regionCode: 'IN',
-            chart: 'mostPopular',
-            maxResults: 10
+            part: 'snippet,contentDetails',
+            maxResults: 50,
+            playlistId
         })
 
-        return NextResponse.json({data:data.items})
+        return NextResponse.json({ data: data.items })
     } catch (error) {
         console.log(error);
         return NextResponse.json({ error }, { status: 401 })
