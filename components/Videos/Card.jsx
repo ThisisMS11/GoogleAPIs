@@ -54,8 +54,8 @@ export default function RecipeReviewCard({ video, ForSearch }) {
             {/* header  */}
             <CardHeader
                 action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon onClick={handleClick} />
+                    <IconButton aria-label="settings" onClick={handleClick}>
+                        <MoreVertIcon />
                     </IconButton>
                 }
                 title={

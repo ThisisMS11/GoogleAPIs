@@ -13,7 +13,8 @@ async function getData() {
 
     const res = await fetch(url, {
         headers: { Cookie: cookies().toString() },
-    });
+        method: "POST"
+    }, {});
 
     if (!res.ok) {
         throw new Error('Failed to fetch data')
