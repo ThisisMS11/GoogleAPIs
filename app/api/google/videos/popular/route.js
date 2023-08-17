@@ -5,7 +5,7 @@ import { google } from 'googleapis'
 export const POST = async (req) => {
     /* get the access token in the request body */
 
-    const { regionCode } = await req.json();
+    const { regionCode, videoCategory } = await req.json();
 
     console.log(req.cookies.get('accessToken'));
 
@@ -33,7 +33,8 @@ export const POST = async (req) => {
         const { data } = await youtube.videos.list({
             /* this is to decide which properties we want */
             part: 'snippet,contentDetails,statistics',
-            regionCode: regionCode || 'IN',
+            regionCode: regionCode,
+            videoCategoryId: videoCategory,
             chart: 'mostPopular',
             maxResults: 10
         })

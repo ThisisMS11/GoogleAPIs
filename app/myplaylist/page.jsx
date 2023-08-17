@@ -325,7 +325,7 @@ const myplaylists = [
 
 const MyPlaylist = () => {
   const [parent, enableAnimations] = useAutoAnimate();
-  const [playlists, setPlaylists] = useState(myplaylists);
+  const [playlists, setPlaylists] = useState([]);
 
   useEffect(() => {
 
@@ -343,7 +343,7 @@ const MyPlaylist = () => {
 
     }
 
-    // fetchUserPlaylists();
+    fetchUserPlaylists();
   }, [])
 
 

@@ -1,5 +1,5 @@
 import Card from '../../components/Videos/Card'
-import popularVideos from "./demodata"
+// import popularVideos from "./demodata"
 import CheckAuth from '../../components/Auth'
 import { cookies } from 'next/headers'
 // import Search from '../../components/Search'
@@ -9,7 +9,7 @@ import { cookies } from 'next/headers'
 async function getData() {
 
     const url = `${process.env.NEXT_PUBLIC_SERVER}/api/google/videos/popular`;
-    const [parent, enableAnimations] = useAutoAnimate()
+    // const [parent, enableAnimations] = useAutoAnimate()
 
     const res = await fetch(url, {
         headers: { Cookie: cookies().toString() },
@@ -26,8 +26,8 @@ async function getData() {
 
 const dashboard = async () => {
 
-    // const videos = await getData();
-    const videos = popularVideos;
+    const videos = await getData();
+    // const videos = popularVideos;
 
 
     return <section >

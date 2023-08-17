@@ -1,11 +1,13 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Card from '../../../../components/Videos/Card';
+import Card from '../../../components/Videos/Card';
 
-const CountriesPopular = ({ params }) => {
+const CountriesPopular = ({ searchParams }) => {
 
-    const { regionCode } = params;
+    const { country, videoCategory } = searchParams;
+
+    console.log({ country, videoCategory });
 
     const [videos, setVideos] = useState([]);
 
@@ -16,7 +18,8 @@ const CountriesPopular = ({ params }) => {
             try {
 
                 const popularVideos = await axios.post(url, {
-                    regionCode
+                    regionCode: country || 'IN',
+                    videoCategory: videoCategory || 0
                 })
 
                 console.log({ popularVideos: popularVideos.data.data });
@@ -31,7 +34,7 @@ const CountriesPopular = ({ params }) => {
         }
 
         fetchCountryPopularVideos();
-    }, [])
+    }, [country,videoCategory])
 
 
     return (
