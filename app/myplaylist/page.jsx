@@ -354,7 +354,7 @@ const MyPlaylist = () => {
 
 
       {playlists.map((playlist) => {
-        return <div className="group flex flex-col h-fit bg-white border border-gray-200 rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7] min-w-2/6 shadow-lg shadow-slate-500/40">
+        return <div className="group flex flex-col h-fit bg-white border border-gray-200 rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7] min-w-2/6 shadow-lg shadow-slate-500/40" key={playlist.id}>
 
 
 

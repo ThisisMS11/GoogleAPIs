@@ -8,9 +8,9 @@ export const GET = async (req) => {
 
     console.log(req.cookies.get('accessToken'));
 
-    let accessToken = req.cookies.get("accessToken").value;
+    let accessToken = req.cookies.get("accessToken")?.value;
 
-    let refreshToken = req.cookies.get("refreshToken").value;
+    let refreshToken = req.cookies.get("refreshToken")?.value;
 
 
     const tokens = {

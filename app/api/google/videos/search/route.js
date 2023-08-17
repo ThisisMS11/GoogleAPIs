@@ -5,8 +5,8 @@ import { NextResponse } from 'next/server';
 export const POST = async (req) => {
     /* get the access token in the request body */
 
-    let accessToken = req.cookies.get("accessToken").value;
-    let refreshToken = req.cookies.get("refreshToken").value;
+    let accessToken = req.cookies.get("accessToken")?.value;
+    let refreshToken = req.cookies.get("refreshToken")?.value;
 
 
     let { query, regionCode } = await req.json();

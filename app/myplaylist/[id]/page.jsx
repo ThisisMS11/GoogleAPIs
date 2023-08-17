@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import React, { useEffect, useState } from 'react'
 import PlaylistItemCard from '../../../components/Videos/PlaylistItemCard'
 import Grid from '@mui/material/Grid';
@@ -110,25 +111,27 @@ const data = [
     }
 ]
 
-const useStyles = makeStyles({
-    PostGrid: {
-        overflowY: 'scroll',
-        maxHeight: '500px',
-        '&::-webkit-scrollbar': {
-            width: 0
-        },
-        display: 'flex',
-        flexDirection: 'column',
-    }
-});
 
-const playlistItems = ({ params, searchParams }) => {
+
+export default function PlaylistItems({ params, searchParams }) {
     // console.log(params);
     const playlistId = params.id;
 
-    const classes = useStyles();
     /* two api calls have to be here */
 
+    const useStyles = makeStyles({
+        PostGrid: {
+            overflowY: 'scroll',
+            maxHeight: '500px',
+            '&::-webkit-scrollbar': {
+                width: 0
+            },
+            display: 'flex',
+            flexDirection: 'column',
+        }
+    });
+
+    const classes = useStyles();
 
     const [user, setUser] = useState(null);
 
@@ -194,5 +197,3 @@ const playlistItems = ({ params, searchParams }) => {
 
     )
 }
-
-export default playlistItems

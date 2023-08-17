@@ -31,7 +31,7 @@ function truncateStringWithEllipsis(str, maxWords) {
     return truncatedWords.join(' ') + '...';
 }
 
-export default function play({ video, isViewed }) {
+export default function Play({ video, isViewed }) {
     const theme = useTheme();
 
     const router = useRouter();

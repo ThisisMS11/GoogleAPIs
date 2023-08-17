@@ -7,11 +7,11 @@ export const POST = async (req) => {
 
     const { regionCode, videoCategory } = await req.json();
 
-    console.log(req.cookies.get('accessToken'));
+    // console.log(req.cookies.get('accessToken'));
 
-    let accessToken = req.cookies.get("accessToken").value;
+    let accessToken = req.cookies.get("accessToken")?.value;
 
-    let refreshToken = req.cookies.get("refreshToken").value;
+    let refreshToken = req.cookies.get("refreshToken")?.value;
 
     const tokens = {
         access_token: accessToken,

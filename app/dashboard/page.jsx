@@ -7,17 +7,21 @@ import { cookies } from 'next/headers'
 
 /* get popular videos */
 async function getData() {
-
     const url = `${process.env.NEXT_PUBLIC_SERVER}/api/google/videos/popular`;
-    // const [parent, enableAnimations] = useAutoAnimate()
 
     const res = await fetch(url, {
-        headers: { Cookie: cookies().toString() },
-        method: "POST"
-    }, {});
+        method: "POST",
+        headers: {
+            Cookie: cookies().toString(),
+        },
+        body: JSON.stringify({
+            regionCode: 'IN',
+            videoCategory: 0,
+        }),
+    });
 
     if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        throw new Error('Failed to fetch data');
     }
 
     const data = await res.json();

@@ -5,8 +5,8 @@ import { oauth2Client } from "../../google/createAuthLink/route";
 export const GET = async (req, { params }) => {
     /* get the access token in the request body */
     const playlistId = params.id;
-    let accessToken = req.cookies.get("accessToken").value;
-    let refreshToken = req.cookies.get("refreshToken").value;
+    let accessToken = req.cookies.get("accessToken")?.value;
+    let refreshToken = req.cookies.get("refreshToken")?.value;
 
 
     const tokens = {
