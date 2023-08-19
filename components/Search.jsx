@@ -23,6 +23,7 @@ const Search = () => {
                 placeholder="Search for items"
                     onChange={(e) => setQuery(e.target.value)}
                     value={query}
+                    autoComplete="off"
                 />
 
                 <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none pl-4">

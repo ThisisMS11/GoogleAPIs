@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Suspense } from 'react'
 import axios from 'axios'
 import Card from '../../../components/Videos/Card';
 
@@ -7,7 +7,7 @@ const CountriesPopular = ({ searchParams }) => {
 
     const { country, videoCategory } = searchParams;
 
-    console.log({ country, videoCategory });
+    // console.log({ country, videoCategory });
 
     const [videos, setVideos] = useState([]);
 
@@ -34,20 +34,26 @@ const CountriesPopular = ({ searchParams }) => {
         }
 
         fetchCountryPopularVideos();
-    }, [country,videoCategory])
+    }, [country, videoCategory])
 
+    if(!videos) return <div>loading...</div>;
 
     return (
         <section >
-            <div className='flex flex-wrap gap-4 relative justify-center'>
-                {videos && videos.map((video) => {
-                    return <div key={video.id}
-                        className=" h-fit p-2 "
-                    >
-                        <Card video={video} ForSearch={false} />
-                    </div>
-                })}
-            </div>
+            <Suspense fallback={<div>countries result loading...</div>}>
+
+                <div className='flex flex-wrap gap-4 relative justify-center'>
+                    {videos && videos.map((video) => {
+                        return <div key={video.id}
+                            className=" h-fit p-2 "
+                        >
+                            <Card video={video} ForSearch={false} />
+                        </div>
+                    })}
+                </div>
+
+            </Suspense>
+
 
         </section>
     )

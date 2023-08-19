@@ -36,7 +36,7 @@ export const POST = async (req) => {
             regionCode: regionCode,
             videoCategoryId: videoCategory,
             chart: 'mostPopular',
-            maxResults: 10
+            maxResults: 12
         })
 
         return NextResponse.json({ data: data.items })

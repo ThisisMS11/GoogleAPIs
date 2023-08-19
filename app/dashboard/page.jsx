@@ -4,9 +4,15 @@ import CheckAuth from '../../components/Auth'
 import { cookies } from 'next/headers'
 // import Search from '../../components/Search'
 
+async function delay() {
+    return new Promise(resolve => setTimeout(resolve, 10 * 60 * 1000));
+}
 
 /* get popular videos */
 async function getData() {
+
+    // await delay();
+    
     const url = `${process.env.NEXT_PUBLIC_SERVER}/api/google/videos/popular`;
 
     const res = await fetch(url, {

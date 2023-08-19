@@ -3,7 +3,13 @@ import { cookies } from 'next/headers'
 import Card from '../../../components/Videos/Card'
 // import Search from '../../../components/Search';
 
+async function delay() {
+    return new Promise(resolve => setTimeout(resolve, 10 * 60 * 1000));
+}
+
 async function getData(query) {
+
+    // await delay();
 
     const url = `${process.env.NEXT_PUBLIC_SERVER}/api/google/videos/search`;
 

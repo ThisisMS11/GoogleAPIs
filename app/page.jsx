@@ -30,8 +30,8 @@ export default function Home({ searchParams }) {
   }, []);
 
   return (
-    <div className=' h-[100vh] flex flex-wrap gap-4 relative top-[5rem] justify-around'>
-      Home Page 2
+    <div className=' h-[70vh] flex items-center justify-center flex-wrap gap-4 relative top-[5rem] text-3xl '>
+      Please Wait Redirecting to Dashboard...
     </div>
   )
 }
