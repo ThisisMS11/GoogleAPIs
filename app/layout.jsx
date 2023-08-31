@@ -23,7 +23,8 @@ export default function RootLayout({ children }) {
 
   const cookieStore = cookies();
 
-  const isLoggedIn = JSON.parse(cookieStore.get('isLoggedIn')?.value);
+  const isLoggedIn = cookieStore.get('isLoggedIn')?.value;
+  // const isLoggedIn= false;
 
   console.log(isLoggedIn);
 

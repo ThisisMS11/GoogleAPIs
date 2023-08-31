@@ -37,3 +37,9 @@
   width: 100%;
   margin-top: 1rem;
 }
+
+@media (min-width: 768px) {
+  .hs-dropdown-menu {
+    translate: 200px !important;
+  }
+}

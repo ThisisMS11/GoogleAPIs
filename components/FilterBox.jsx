@@ -157,7 +157,7 @@ const FilterBox = () => {
       <Slider defaultValue={50} max={120} aria-label="Default" valueLabelDisplay="auto" /> */}
 
       <button onClick={showfilters}
-        className='absolute bottom-4 bg-red-500 p-4 text-md rounded-md text-white'>
+        className='absolute bottom-4 bg-red-500 p-4 text-md rounded-md text-white' data-hs-overlay="#navbar-secondary-content">
         Apply Changes
       </button>
 

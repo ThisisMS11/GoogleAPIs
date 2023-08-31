@@ -1,5 +1,5 @@
 import Card from '../../components/Videos/Card'
-// import popularVideos from "./demodata"
+import popularVideos from "./demodata"
 import CheckAuth from '../../components/Auth'
 import { cookies } from 'next/headers'
 // import Search from '../../components/Search'
@@ -36,8 +36,8 @@ async function getData() {
 
 const dashboard = async () => {
 
-    const videos = await getData();
-    // const videos = popularVideos;
+    // const videos = await getData();
+    const videos = popularVideos;
 
 
     return <section >

@@ -10,10 +10,12 @@ export default function Home({ searchParams }) {
   useEffect(() => {
 
     const isLoggedIn = getCookies().isLoggedIn;
-
+    console.log(isLoggedIn);
+    
     /* if the user is logged in then we want the user to be redirected to the dashboard otherwise the login page */
     const token = searchParams?.token || localStorage.getItem('token');
 
+    console.log(token);
 
     if (token) {
       localStorage.setItem('token', token);

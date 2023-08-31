@@ -1,0 +1,3 @@
+I introduced checkbox option to give user an indicator for the videos that he has watched already a kind of bookmark done successfully.
+
+next task : token not getting set properly please see the issue and get it hosted 

@@ -36,8 +36,8 @@ export async function middleware(request) {
         try {
 
             const { payload } = await jose.jwtVerify(JWTtoken, secret, {
-                issuer: 'http://localhost:3000',
-                audience: 'http://localhost:3000',
+                issuer: process.env.NEXT_PUBLIC_SERVER,
+                audience: process.env.NEXT_PUBLIC_SERVER,
             })
 
             /* payload contains the userId of the client */

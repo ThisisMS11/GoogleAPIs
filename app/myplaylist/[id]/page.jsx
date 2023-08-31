@@ -134,27 +134,39 @@ export default function PlaylistItems({ params, searchParams }) {
     const classes = useStyles();
 
     const [user, setUser] = useState(null);
+    const [playlist, setPlaylist] = useState([]);
+    const [playlistItems, setPlaylistItems] = useState([]);
 
     useEffect(() => {
-        async function getUserInfo() {
+        async function fetchData() {
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/user`, {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                    }
-                })
-                setUser(response.data.user);
+                const token = localStorage.getItem('token');
+                const requests = [
+                    axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/user`, { headers: { 'Authorization': `Bearer ${token}` } }),
+                    axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/playlists/playlistItems/${playlistId}`, { headers: { 'Authorization': `Bearer ${token}` } }),
+                    axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/playlists/${playlistId}`, { headers: { 'Authorization': `Bearer ${token}` } })
+                ];
+
+                const [userInfoResponse, playlistItemsResponse, playlistInfoResponse] = await Promise.all(requests);
+
+                setUser(userInfoResponse.data.user);
+                setPlaylistItems(playlistItemsResponse.data.data);
+
+                console.log(playlistInfoResponse.data.data);
+                
+                setPlaylist(playlistInfoResponse.data.data);
             } catch (error) {
                 console.log(error);
+                // Handle errors gracefully
             }
         }
 
-        getUserInfo();
-    }, [])
+        fetchData();
+    }, []);
 
 
 
-    if (user == null) return <div>loading..</div>
+    if (user == null || playlistItems == null || playlist==null) return <div>loading..</div>
 
     return (
         <>
@@ -171,18 +183,18 @@ export default function PlaylistItems({ params, searchParams }) {
                             <img src="https://i.ytimg.com/vi/cDaZf16Qr7M/mqdefault.jpg" alt="image not found" className='w-full rounded-md' />
 
                             <p className='text-xl mt-3'>
-                                Playlist Name
+                                {playlist.snippet.title}
                             </p>
 
                             <p className='text-slate-400 text-sm'>
-                                {null || 'No Description'}
+                                {playlist.snippet.description || 'No Description'}
                             </p>
                         </div>
                     </div>
 
                     <Grid className={classes.PostGrid} >
                         {
-                            data.map((video) => (
+                            playlistItems.map((video) => (
                                 <div key={video.id} className='border-4 w-[20rem] border-white mx-auto md:w-full' >
                                     <PlaylistItemCard video={video} isViewed={user.videosViewed.includes(video.snippet.resourceId.videoId)} />
                                 </div>
