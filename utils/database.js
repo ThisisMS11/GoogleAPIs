@@ -12,7 +12,7 @@ export const connectToDB = async () => {
 
 
     try {
-        await mongoose.connect(process.env.MONGODB_URI_DOCKER, {
+        await mongoose.connect(process.env.MONGODB_URI, {
             dbName: "TubeSense",
             useNewUrlParser: true,
             useUnifiedTopology: true,

@@ -79,12 +79,14 @@ export const GET = async (req) => {
         const secret = new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET);
         const alg = 'HS256';
 
-        const jwt = await new jose.SignJWT({ 'http://localhost:3000': true })
+        const server = process.env.NEXT_PUBLIC_SERVER;
+
+        const jwt = await new jose.SignJWT({ server: true })
             .setProtectedHeader({ alg })
             .setSubject(userId) // Set the "sub" claim to the user ID
             .setIssuedAt()
-            .setIssuer('http://localhost:3000')
-            .setAudience('http://localhost:3000') // Set the "aud" claim to the user ID
+            .setIssuer(server)
+            .setAudience(server) // Set the "aud" claim to the user ID
             .setExpirationTime('2h')
             .sign(secret);
 
@@ -97,7 +99,7 @@ export const GET = async (req) => {
         cookies().set('expirationTime', newExpirationDate, { secure: true });
         cookies().set('isLoggedIn', true, { secure: true });
 
-        const url = `${process.env.NEXT_PUBLIC_SERVER}?token=${jwt}`;
+        const url = `${server}?token=${jwt}`;
 
         return NextResponse.redirect(url);
     } catch (err) {

@@ -1,12 +1,12 @@
 import GoogleProvider from '../components/GoogleProvider'
+import ReduxProvider from '../components/ReduxProvider'
 import './globals.css'
 import { Ubuntu } from 'next/font/google'
 import Navbar from '../components/Navbar'
 import MuiThemeProvider from '../components/MuiThemeProvider'
 import Script from 'next/script'
 import { cookies } from 'next/headers'
-import Logo from '../app/assets/youtubelogo.png'
-import Image from 'next/image'
+
 
 export const ubuntu = Ubuntu({
   subsets: ['latin'],
@@ -34,25 +34,18 @@ export default function RootLayout({ children }) {
       <Script src="https://kit.fontawesome.com/c1677446e6.js" crossorigin="anonymous" />
 
 
-      <body className={ubuntu.className}>
-        {
-          isLoggedIn ? <Navbar /> : <div className='text-center flex items-center absolute '>
-            <Image
-              src={Logo}
-              width={80}
-              height={80}
-              alt="Picture of the author"
-            />
-            <div className='text-xl text-bold'>
 
-              TubeSense
-            </div>
-          </div>
-        }
+      <body className={ubuntu.className}>
 
         <MuiThemeProvider>
           <GoogleProvider>
-            {children}
+            <ReduxProvider>
+
+              <Navbar />
+
+              {children}
+            </ReduxProvider>
+
           </GoogleProvider>
         </MuiThemeProvider>
 
