@@ -17,7 +17,7 @@ export async function middleware(request) {
 
     /* authorisation logic */
     if (request.nextUrl.pathname.startsWith('/api/videos')
-        || request.nextUrl.pathname.startsWith('/api/user')) {
+        || request.nextUrl.pathname.startsWith('/api/user') || request.nextUrl.pathname.startsWith('/api/playlists')) {
 
         /* get the authorisation header */
 

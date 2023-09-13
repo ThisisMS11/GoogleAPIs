@@ -1,6 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { redirect, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import {  useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { FilterBox } from '../imports/ComponentExports'
 import { deleteCookie } from 'cookies-next';
@@ -9,25 +9,53 @@ import Logo from '../app/assets/youtubelogo.png'
 import Image from 'next/image'
 import { useDispatch } from 'react-redux';
 import { setUser, setIsAuthenticated } from '../app/redux/slices/UserSlice'
+import axios from 'axios';
 
 const Navbar = () => {
 
     /* getting the user information from the global state */
     const { user, isAuthenticated } = useSelector(state => state.User);
     const dispatch = useDispatch();
+    const router = useRouter();
 
     useEffect(() => {
         import('preline')
 
         console.log({ user, isAuthenticated });
 
-        // if(!isAuthenticated){
-        //     console.log("Navbar redirected line 22");
-        //     redirect('/login')
-        // }
+        const token = localStorage.getItem('token');
+
+        /* if token is available then we must always show user information in the navbar right (to protect user info loss on hard reloading) */
+        async function fetchUserInfo(token) {
+            console.log("hello from navbar ");
+            /* make the api call to get the user information here */
+            try {
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/user`,
+                    { headers: { 'Authorization': `Bearer ${token}` } });
+
+                const { user } = response.data;
+
+                console.log('Inside app folder page : ', { user });
+
+                dispatch(setUser(user));
+                dispatch(setIsAuthenticated(true));
+
+
+            } catch (error) {
+                console.log("some error occured while fetching the user information in navbar");
+            }
+        }
+
+        if (token) {
+            localStorage.setItem('token', token);
+            /* also fetch user information and set it to global state */
+            fetchUserInfo(token);
+        }else{
+            router.push('/login');
+        }
     }, []);
 
-    const router = useRouter();
+    
 
     /* Handle Logout function to come up here */
     const handleLogout = () => {

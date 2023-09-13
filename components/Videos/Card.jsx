@@ -48,6 +48,26 @@ export default function RecipeReviewCard({ video, ForSearch }) {
         router.push(`/videos/${id}`)
     }
 
+    function formatDate(inputDate) {
+        // Parse the input date string into a Date object
+        const date = new Date(inputDate);
+      
+        // Define an array of month names
+        const monthNames = [
+          "January", "February", "March", "April", "May", "June", "July",
+          "August", "September", "October", "November", "December"
+        ];
+      
+        // Extract day, month, and year
+        const day = date.getDate();
+        const month = monthNames[date.getMonth()];
+        const year = date.getFullYear();
+      
+        // Create the formatted date string
+        const formattedDate = `${day} ${month} ${year}`;
+      
+        return formattedDate;
+      }
 
     return (
         <Card sx={{ maxWidth: 345, minHeight: 500, position: 'relative' }}>
@@ -68,7 +88,7 @@ export default function RecipeReviewCard({ video, ForSearch }) {
                             subscribed
                         </button> */}
                     </div>}
-                subheader="September 14, 2016"
+                subheader={formatDate((video.snippet.publishedAt).split('T')[0])}
             />
 
 

@@ -17,7 +17,6 @@ export default function Home({ searchParams }) {
     /* if the user is logged in then we want the user to be redirected to the dashboard otherwise the login page */
     const token = searchParams?.token || localStorage.getItem('token');
 
-    console.log('token');
 
     async function fetchUserInfo(token) {
       /* make the api call to get the user information here */
@@ -45,6 +44,8 @@ export default function Home({ searchParams }) {
       localStorage.setItem('token', token);
       /* also fetch user information and set it to global state */
       fetchUserInfo(token);
+    }else{
+      router.push('/login');
     }
 
   }, []);

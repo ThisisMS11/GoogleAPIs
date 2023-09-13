@@ -49,9 +49,7 @@ const dashboard = async () => {
                 return <div key={video.id}
                     className=" h-fit p-2 "
                 >
-
                     <Card video={video} ForSearch={false} />
-
                 </div>
             })}
         </div>
