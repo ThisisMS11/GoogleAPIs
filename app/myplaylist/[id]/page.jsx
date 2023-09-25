@@ -183,11 +183,11 @@ export default function PlaylistItems({ params, searchParams }) {
                             <img src="https://i.ytimg.com/vi/cDaZf16Qr7M/mqdefault.jpg" alt="image not found" className='w-full rounded-md' />
 
                             <p className='text-xl mt-3'>
-                                {playlist.snippet.title}
+                                {playlist.snippet?.title}
                             </p>
 
                             <p className='text-slate-400 text-sm'>
-                                {playlist.snippet.description || 'No Description'}
+                                {playlist.snippet?.description || 'No Description'}
                             </p>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 I introduced checkbox option to give user an indicator for the videos that he has watched already a kind of bookmark done successfully.
 
-PROBLEM : how to retain the user information even after hard reload (for dynamic reloading location i.e. even at places where information is not fetched) + playlists are not showing. 
+PROBLEM : 
 
 mongodb+srv://MohitNext_js:xmQuQsD9t2Ukv6Uv@cluster0.jekpfs4.mongodb.net/?retryWrites=true&w=majority

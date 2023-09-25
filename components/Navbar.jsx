@@ -32,13 +32,13 @@ const Navbar = () => {
             try {
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/user`,
                     { headers: { 'Authorization': `Bearer ${token}` } });
-
+                    
                 const { user } = response.data;
 
                 console.log('Inside app folder page : ', { user });
 
                 dispatch(setUser(user));
-                dispatch(setIsAuthenticated(true));
+                dispatch(setIsAuthenticated(true)); 
 
 
             } catch (error) {
@@ -50,8 +50,6 @@ const Navbar = () => {
             localStorage.setItem('token', token);
             /* also fetch user information and set it to global state */
             fetchUserInfo(token);
-        }else{
-            router.push('/login');
         }
     }, []);
 
@@ -69,7 +67,7 @@ const Navbar = () => {
 
         dispatch(setUser(null));
         dispatch(setIsAuthenticated(false));
-
+        console.log("Hello 4");
         router.push('/login');
     }
 
@@ -80,7 +78,7 @@ const Navbar = () => {
                 <nav className="  border-black relative flex flex-wrap basis-full items-center w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
 
 
-                    <div className="pl-3 sm:pl-2 sm:border-l sm:border-gray-300 dark:border-gray-700">
+                    <div className="pl-3 sm:pl-2    sm:border-l sm:border-gray-300 dark:border-gray-700">
                         <button type="button" className="p-2 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800 " data-hs-overlay="#navbar-secondary-content" aria-controls="navbar-secondary-content" aria-label="Toggle navigation">
 
                             <svg className="hs-overlay-open:hidden w-4 h-4" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">

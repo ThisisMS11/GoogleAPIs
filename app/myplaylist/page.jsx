@@ -14,9 +14,14 @@ const MyPlaylist = () => {
   useEffect(() => {
 
     async function fetchUserPlaylists() {
+      const token = localStorage.getItem('token');
 
       try {
-        const playlistRes = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/playlists`); 
+        const playlistRes = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/playlists`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
 
         setPlaylists(playlistRes.data.data);
       } catch (error) {

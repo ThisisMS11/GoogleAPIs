@@ -98,6 +98,7 @@ export const GET = async (req) => {
         cookies().set('refreshToken', refreshToken, { secure: true });
         cookies().set('expirationTime', newExpirationDate, { secure: true });
         cookies().set('isLoggedIn', true, { secure: true });
+        cookies().set('token',jwt,{secure:true});
 
         const url = `${server}?token=${jwt}`;
 
